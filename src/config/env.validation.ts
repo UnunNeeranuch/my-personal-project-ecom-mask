@@ -9,6 +9,8 @@ const envSchema = z.object({
   JWT_EXPIRES_IN: z.coerce.number().int().positive(),
 });
 
+export type EnvConfigType = z.infer<typeof envSchema>;
+
 export const validate = (config: Record<string, any>) => {
   const { success, data, error } = envSchema.safeParse(config);
   if (!success) {

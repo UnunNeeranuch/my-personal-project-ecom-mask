@@ -1,6 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { ConfigModule as NestConfigModule } from '@nestjs/config';
 import { validate } from './env.validation';
+import { TypedConfigService } from './typed-config.service';
 
 @Global()
 @Module({
@@ -9,5 +10,7 @@ import { validate } from './env.validation';
       validate: validate,
     }),
   ],
+  providers: [TypedConfigService],
+  exports: [TypedConfigService],
 })
 export class ConfigModule {}
